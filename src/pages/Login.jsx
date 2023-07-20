@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import './login.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 const Login = () => {
     const [email, setEmail] = useState('');
+    const navigate = useNavigate();
     const [password, setPassword] = useState('');
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const submitHandler = async (e) => {
         let url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=
@@ -23,18 +25,22 @@ const Login = () => {
             })
             if (res.ok) {
                 alert('Successfully signed up.');
+                setIsLoggedIn(true);
+                alert("Your profile is incomplete!!!")
+                navigate("/")
             }
             const data = await res.json();
             setEmail('');
             setPassword('')
         } catch (err) {
             console.log(err.message)
+            setIsLoggedIn(false);
         }
     }
 
     return (
         <div className='wrapper'>
-            <form className='form'>
+            <form className='form' onSubmit={submitHandler}>
                 <div className='heading'>
                     <p>Login</p>
                 </div>
