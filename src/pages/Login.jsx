@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState , useContext} from 'react'
 import './login.css'
 import { Link, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../store/AuthContext';
 const Login = () => {
     const [email, setEmail] = useState('');
     const navigate = useNavigate();
     const [password, setPassword] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const ctx = useContext(AuthContext);
 
     const submitHandler = async (e) => {
         let url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=
@@ -51,7 +53,7 @@ const Login = () => {
                     <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder='Password' />
                 </div>
                 <div className='actions'>
-                    <button type='submit'>Login</button>
+                    <button type='submit' onClick={()=>ctx.login()}>Login</button>
                 </div>
             </form>
             <div className='last'>
