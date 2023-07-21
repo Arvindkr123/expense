@@ -20,11 +20,12 @@ p{
     align-items: center;
 }
 
-.profile button{
+.profile a{
     color: yellow;
     cursor: pointer;
     background-color: rgb(171, 142, 171);
     border: none;
     font-size: inherit;
     justify-content: center;
+    text-decoration: none;
 }
