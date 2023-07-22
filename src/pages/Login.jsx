@@ -25,6 +25,7 @@ const Login = () => {
                     'Content-Type': 'application/json',
                 },
             });
+            console.log(res)
 
             if (res.ok) {
                 alert('Successfully logged in.');
@@ -34,6 +35,8 @@ const Login = () => {
             }
 
             const data = await res.json();
+            console.log(data.idToken)
+            localStorage.setItem('idToken', data.idToken);
             setEmail('');
             setPassword('');
         } catch (err) {
