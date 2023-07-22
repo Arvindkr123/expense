@@ -1,31 +1,40 @@
 .main {
-  border-bottom: 3px solid gray;
+  width: 95vw;
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
-  padding-left: 5px;
-  padding-right: 5px;
+  margin: auto;
+  margin-top: 20px;
 }
 
-p {
-  font-style: italic;
+.right{
+  padding: 15px 10px;
+  background-color: rgb(212, 183, 144);
+  border-radius: 10px;
 }
 
-.profile {
+.left {
+  border-radius: 5px;
+}
+.verifyEmail {
   display: flex;
-  background-color: rgb(171, 142, 171);
-  padding: 10px;
-  margin: 10px;
-  border-radius: 20px;
-  align-items: center;
-}
-
-.profile a {
-  color: yellow;
-  cursor: pointer;
-  background-color: rgb(171, 142, 171);
-  border: none;
-  font-size: inherit;
   justify-content: center;
-  text-decoration: none;
+  align-items: center;
+  margin: 50px auto;
+  padding: 6px 9px;
+  background-color: #ffcc00;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.logout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px auto;
+  padding: 6px 9px;
+  background-color: #ffcc00;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
