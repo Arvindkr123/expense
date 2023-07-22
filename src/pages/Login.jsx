@@ -7,7 +7,6 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const navigate = useNavigate();
     const [password, setPassword] = useState('');
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const ctx = useContext(AuthContext);
 
     const submitHandler = async (e) => {
@@ -29,7 +28,6 @@ const Login = () => {
 
             if (res.ok) {
                 alert('Successfully logged in.');
-                setIsLoggedIn(true);
                 alert('Your profile is incomplete!!!');
                 navigate('/');
             }
@@ -41,7 +39,6 @@ const Login = () => {
             setPassword('');
         } catch (err) {
             console.log(err.message);
-            setIsLoggedIn(false);
         }
     };
 
@@ -62,6 +59,7 @@ const Login = () => {
                         <button type='submit' onClick={() => ctx.login()}>
                             Login
                         </button>
+                        <p><Link to='/forgotPassword'>forgot password</Link></p>
                     </div>
                 </form>
                 <div className={classes.last}>

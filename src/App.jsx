@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home.jsx'
 import UpdateProfilePage from './pages/UpdateProfilePage.jsx'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
+import ForgotPassword from './components/ForgotPassword.jsx'
 
 const App = () => {
     return (
@@ -14,6 +15,7 @@ const App = () => {
                 <Route path='/signUp' element={<SignUp />}></Route>
                 <Route path='/login' element={<Login />}></Route>
                 <Route path='/updateProfile' element={<ProtectedRoute Component={UpdateProfilePage} />}></Route>
+                <Route path='/forgotPassword' element={<ForgotPassword/>}></Route>
             </Routes>
         </BrowserRouter>
     )

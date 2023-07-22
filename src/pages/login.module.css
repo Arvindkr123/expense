@@ -42,10 +42,15 @@
   border-radius: 4px;
 }
 
-.actions {
+/* .actions {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+} */
+
+.actions p{
+  text-align: center;
+  margin-top: 10px;
 }
 
 .actions button {
@@ -56,6 +61,7 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  width: 100%;
 }
 
 .last {
