@@ -86,7 +86,7 @@ const UpdateProfilePage = () => {
             <form className={classes.form} onSubmit={submitHandler}>
                 <div className={classes['update-header']}>
                     <h3>Contact Details</h3>
-                    <button>Cancel</button>
+                    <Link to='/'>Cancel</Link>
                 </div>
                 <div className={classes['input-wrapper']}>
                     <div className={classes.formInput}>

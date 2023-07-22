@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import classes from './home.module.css';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../store/AuthContext';
+import ExpenseItems from '../components/Expense/ExpenseItems.jsx';
+import ExpenseTable from '../components/Expense/ExpenseTable.jsx';
 
 const Home = () => {
     const url =
@@ -53,6 +55,14 @@ const Home = () => {
             <button className={classes.logout} onClick={() => ctx.logout()}>
                 Logout
             </button>
+            <div className={classes.line}></div>
+            <div className={classes.form}>
+                <ExpenseItems/>
+            </div>
+            <div style={{marginTop:"20px"}} className={classes.form}>
+            <ExpenseTable/>
+            </div>
+            
         </>
     );
 };

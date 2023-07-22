@@ -7,7 +7,7 @@
   margin-top: 20px;
 }
 
-.right{
+.right {
   padding: 15px 10px;
   background-color: rgb(212, 183, 144);
   border-radius: 10px;
@@ -15,6 +15,7 @@
 
 .left {
   border-radius: 5px;
+  font-size: 30px;
 }
 .verifyEmail {
   display: flex;
@@ -37,4 +38,21 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.form {
+  width: 50%;
+  margin: auto;
+  border: 1px solid grey;
+  padding: 20px;
+  border-radius: 5px;
+}
+.line {
+  width: 100%;
+  height: 2px;
+  background-color: gray;
+  border-radius: 3px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 0 30px;
 }

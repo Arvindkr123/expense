@@ -44,7 +44,7 @@ p {
   margin: 1rem;
 }
 
-.update-header button {
+.update-header a {
   cursor: pointer;
   border: 1px solid red;
   color: red;
