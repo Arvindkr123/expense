@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import classes from './signUp.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confPassword, setConfPassword] = useState('');
+    const navigate = useNavigate();
 
     const submitHandler = async (e) => {
         let url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAX8qM-jX3aBtw6RklLgkhDt1662bXXBlY`;
@@ -31,6 +32,7 @@ const SignUp = () => {
                     setEmail('');
                     setPassword('');
                     setConfPassword('');
+                    navigate("/login")
                 } else {
                     const data = await res.json();
                     console.log(data.error.message);
