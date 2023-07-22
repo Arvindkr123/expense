@@ -3,15 +3,49 @@ import { StoreData } from '../../StoreOfData/store';
 
 const ExpenseItems = () => {
     const [amount, setAmount] = useState();
-    const [category, setCategory] = useState();
+    const [category, setCategory] = useState('Movie');
     const [description, setDescription] = useState();
+    const [totalItem, setTotalItem] = useState();
+
     const ctx = useContext(StoreData);
 
-    const submitHandler = (e) => {
+    const url = `https://expense-tracker-app-814b6-default-rtdb.firebaseio.com/`
+    const getDataFrom = async () => {
+        const email = localStorage.getItem('email')
+        const response = await fetch(`${url}${email}.json`, {
+            method: "GET"
+        })
+        const data = await response.json();
+        console.log('data from Expense Item', data);
+        const newItem = [];
+        for (let key in data) {
+            newItem.push({ id: key, ...data[key] })
+        }
+        ctx.addItem(newItem)
+        console.log('newItem', newItem);
+    }
+
+    const submitHandler = async (e) => {
         e.preventDefault();
         console.log(amount, category, description)
         ctx.addItem({ amount, category, description })
         console.log(ctx.items)
+        const email = localStorage.getItem('email');
+        const response = await fetch(`${url}${email}.json`, {
+            method: "POST",
+            body: JSON.stringify({
+                amount: amount,
+                category: category,
+                description:description
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+
+        const data1 = await response.json();
+        console.log('data', data1);
+        getDataFrom();
         setAmount('')
         setCategory('')
         setDescription('')

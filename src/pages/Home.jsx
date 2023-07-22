@@ -1,14 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import classes from './home.module.css';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../store/AuthContext';
 import ExpenseItems from '../components/Expense/ExpenseItems.jsx';
 import ExpenseTable from '../components/Expense/ExpenseTable.jsx';
+import { StoreData } from '../StoreOfData/store';
 
 const Home = () => {
-    const url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyAX8qM-jX3aBtw6RklLgkhDt1662bXXBlY';
+    const url = 'https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyAX8qM-jX3aBtw6RklLgkhDt1662bXXBlY';
     const ctx = useContext(AuthContext);
+    const [showExp, setShowExp] = useState(false);
+    const dataCtx = useContext(StoreData);
 
     const verifyEmailHandler = async (e) => {
         e.preventDefault();
@@ -57,12 +59,17 @@ const Home = () => {
             </button>
             <div className={classes.line}></div>
             <div className={classes.form}>
-                <ExpenseItems/>
+                <div className={classes.addExp}>
+                    <button type='button' className='btn btn-secondary' onClick={() => setShowExp(!showExp)}>{!showExp ? '+Add Expense' : 'Close'}</button>
+                </div>
             </div>
-            <div style={{marginTop:"20px"}} className={classes.form}>
-            <ExpenseTable/>
+            {showExp && <div className={classes.form}>
+                <ExpenseItems />
+            </div>}
+            <div className={classes.table}>
+                <ExpenseTable />
             </div>
-            
+
         </>
     );
 };

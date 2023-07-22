@@ -1,11 +1,29 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { StoreData } from '../../StoreOfData/store'
 
 const ExpenseTable = () => {
     const ctx = useContext(StoreData);
+    const url = 'https://expense-tracker-app-814b6-default-rtdb.firebaseio.com/'
+    const email = localStorage.getItem('email');
+
+    useEffect(() => {
+        const fetchMyApi = async () => {
+            let response = await fetch(`${url}${email}.json`, {
+                method: 'GET'
+            })
+            const data = await response.json();
+            const newItem = [];
+            for (let key in data) {
+                newItem.push({ id: key, ...data[key] })
+            }
+            console.log('useEffect Called ', newItem);
+            ctx.addItem(newItem)
+        }
+        fetchMyApi();
+    }, [])
     return (
         <>
-            <div className="table">
+            <table className="table">
                 <thead>
                     <tr>
                         <th scope='col'>#</th>
@@ -20,7 +38,7 @@ const ExpenseTable = () => {
                     {
                         ctx.items.map((item, indx) => {
                             return <tr key={indx} >
-                                <th scope="row" >{indx}</th>
+                                <th scope="row" >{indx+1}</th>
                                 <td>{item.amount}</td>
                                 <td>{item.catagory}</td>
                                 <td>{item.description}</td>
@@ -30,7 +48,7 @@ const ExpenseTable = () => {
                         })
                     }
                 </tbody>
-            </div>
+            </table>
         </>
     )
 }

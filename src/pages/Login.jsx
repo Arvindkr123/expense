@@ -35,6 +35,8 @@ const Login = () => {
             const data = await res.json();
             console.log(data.idToken)
             localStorage.setItem('idToken', data.idToken);
+            localStorage.setItem('email',email.replace(/[@.]/g,''))
+            console.log(email)
             setEmail('');
             setPassword('');
         } catch (err) {

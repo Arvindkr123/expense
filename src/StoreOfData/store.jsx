@@ -4,8 +4,11 @@ export const StoreData = createContext();
 
 export const Store = ({ children }) => {
     const [items, setItems] = useState([]);
-    const addItemHandler = (newItem) => {
-        setItems((prev) => [...prev, newItem]); // Add the newItem to the existing array using spread operator
+    const addItemHandler = async (newItem) => {
+        const data = await newItem;
+        console.log('from store context ', data)
+        setItems([...data]);
+        console.log("items from Store Context",items)
     };
 
     const storeValues = {
