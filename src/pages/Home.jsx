@@ -58,18 +58,9 @@ const Home = () => {
                 Logout
             </button>
             <div className={classes.line}></div>
-            <div className={classes.form}>
-                <div className={classes.addExp}>
-                    <button type='button' className='btn btn-secondary' onClick={() => setShowExp(!showExp)}>{!showExp ? '+Add Expense' : 'Close'}</button>
-                </div>
-            </div>
-            {showExp && <div className={classes.form}>
+           <div className={classes.form}>
                 <ExpenseItems />
-            </div>}
-            <div className={classes.table}>
-                <ExpenseTable />
             </div>
-
         </>
     );
 };
