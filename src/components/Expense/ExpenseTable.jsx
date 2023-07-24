@@ -1,10 +1,25 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { StoreData } from '../../StoreOfData/store'
 
 const ExpenseTable = () => {
     const ctx = useContext(StoreData);
     const url = 'https://expense-tracker-app-814b6-default-rtdb.firebaseio.com/'
     const email = localStorage.getItem('email');
+    const [rerender, setRerender] = useState(true);
+
+    // delete the data from the backend
+    const toDeleteData = async (id) => {
+        const resp = await fetch(`${url}${email}/${id}.json`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        const respo = await resp.json();
+        setRerender((prev) => !prev)
+        console.log('respo', respo, id);
+    }
+
 
     useEffect(() => {
         const fetchMyApi = async () => {
@@ -20,7 +35,7 @@ const ExpenseTable = () => {
             ctx.addItem(newItem)
         }
         fetchMyApi();
-    }, [])
+    }, [rerender])
     return (
         <>
             <table className="table">
@@ -36,14 +51,15 @@ const ExpenseTable = () => {
                 </thead>
                 <tbody>
                     {
-                        ctx.items.map((item, indx) => {
-                            return <tr key={indx} >
-                                <th scope="row" >{indx+1}</th>
-                                <td>{item.amount}</td>
-                                <td>{item.category}</td>
-                                <td>{item.description}</td>
+                        ctx.items.map(({ id, amount, category, description }, indx) => {
+                            console.log(id)
+                            return <tr key={id} >
+                                <th scope="row" >{indx + 1}</th>
+                                <td>{amount}</td>
+                                <td>{category}</td>
+                                <td>{description}</td>
                                 <td><button type='button' className='btn btn-warning' >Edit</button></td>
-                                <td><button type='button' className='btn btn-danger' >Delete</button></td>
+                                <td><button type='button' className='btn btn-danger' onClick={() => toDeleteData(id)} >Delete</button></td>
                             </tr>
                         })
                     }
