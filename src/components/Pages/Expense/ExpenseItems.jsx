@@ -48,7 +48,6 @@ const ExpenseItems = () => {
     } catch (err) {
       alert(err)
     }
-
   };
 
   const editHandler = (id, amount1, catagory1, description1) => {
@@ -73,7 +72,6 @@ const ExpenseItems = () => {
     } catch (err) {
       alert(err)
     }
-
   };
 
   const submitHandler = async (e) => {
@@ -116,6 +114,7 @@ const ExpenseItems = () => {
   };
 
   const totalAmount = totalItem.reduce((curr, item) => curr + Number(item.amount), 0);
+  console.log(totalAmount)
   const heading = ['Expense', 'Catagory', 'Description'];
   const ExpToDwnld = [heading];
 
@@ -212,7 +211,7 @@ const ExpenseItems = () => {
           <tr className={!theme ? '' : classes.dark} >
             <th scope="col">#</th>
             <th scope="col">Expense</th>
-            <th scope="col">Catagory</th>
+            <th scope="col">Category</th>
             <th scope="col">Description</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
@@ -220,8 +219,6 @@ const ExpenseItems = () => {
         </thead>
         <tbody>
           {
-            // ctx.items.map((item,indx)=>(
-            // Redux
             totalItem.map((item, indx) => (
               <tr className={!theme ? '' : classes.dark} key={item.id}>
                 <th scope="row">{indx + 1}</th>
@@ -259,12 +256,10 @@ const ExpenseItems = () => {
       </table>
       <div className={classes.totalExpense}>
         <div className={classes.title}>
-          Total Of Expense
+          <b> Total Of Expense </b>
         </div>
         <div className={classes.amount}>
-          ${
-            totalAmount
-          }
+          <b> ${totalAmount} </b>
         </div>
       </div>
     </Fragment>

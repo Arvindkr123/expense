@@ -44,8 +44,6 @@ const WelcomeScreen = () => {
             <div className={classes.form}>
                 <ExpenseItems />
             </div>
-            <div className={classes.table}>
-            </div>
         </Fragment>
     )
 }

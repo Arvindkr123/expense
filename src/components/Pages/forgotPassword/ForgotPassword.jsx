@@ -3,12 +3,10 @@ import { Link, useNavigate } from 'react-router-dom'
 import classes from './ForgotPassword.module.css'
 
 const ForgotPassword = () => {
-
     const [email,setEmail]=useState();
     const [sending,setsending]=useState(false);
-    const redirect=useNavigate();
-
-
+    const redirect = useNavigate();
+    
     const emailChangeHandler=(e)=>{
         setEmail(e.target.value);
     }
