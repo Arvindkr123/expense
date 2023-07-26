@@ -1,15 +1,12 @@
 import React, { Fragment, useContext, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import AuthContext from '../Authentication/auth-context'
-import Store, { StoreData } from '../storeOfData/Store'
 import { authAction } from '../storeRedux/authReducer'
 import ExpenseItems from './Expense/ExpenseItems'
 import classes from './WelcomeScreen.module.css'
 
 const WelcomeScreen = () => {
     const dispatch = useDispatch()
-    const ctx = useContext(StoreData);
     const url = 'https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyAX8qM-jX3aBtw6RklLgkhDt1662bXXBlY'
     const verifyEmailHandler = async (e) => {
         e.preventDefault();
@@ -33,7 +30,7 @@ const WelcomeScreen = () => {
         <Fragment>
             <div className={classes.main}>
                 <div className={classes.left}>
-                    Welcome to expance tracker!!!!
+                    Welcome to Expence Tracker!!!!
                 </div>
                 <div className={classes.right}>
                     Your profile is incomplete.<Link to='/completeprofile'>Complete now</Link>
@@ -49,8 +46,6 @@ const WelcomeScreen = () => {
             </div>
             <div className={classes.table}>
             </div>
-
-
         </Fragment>
     )
 }
